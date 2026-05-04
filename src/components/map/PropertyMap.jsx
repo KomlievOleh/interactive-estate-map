@@ -31,12 +31,6 @@ function createPriceIcon(property, isActive) {
 function MapController({ selected, properties }) {
   const map = useMap();
 
-//   useEffect(() => {
-//     if (selected?.lat && selected?.lng) {
-//       map.flyTo([selected.lat, selected.lng], 12, { duration: 0.8 });
-//     }
-//   }, [selected, map]);
-
   useEffect(() => {
     if (properties.length > 1) {
       const bounds = L.latLngBounds(
@@ -51,27 +45,6 @@ function MapController({ selected, properties }) {
   }, [properties, map]);
 
 
-//   useEffect(() => {
-//     if (selected?.lat && selected?.lng) {
-//         const mapSize = map.getSize();
-
-//         const offsetY = mapSize.y * 0.2; // 20% вниз
-
-//         const targetPoint = map.latLngToContainerPoint([
-//         selected.lat,
-//         selected.lng,
-//         ]);
-
-//         const newPoint = targetPoint.subtract([0, offsetY]);
-
-//         const newLatLng = map.containerPointToLatLng(newPoint);
-
-//         map.flyTo(newLatLng, 12, {
-//         duration: 0.8,
-//         });
-//     }
-//   }, [selected, map]);
-    
   return null;
 }
 
@@ -166,17 +139,22 @@ export default function PropertyMap({ properties, selected, onSelect }) {
     }, {});
   }, [properties, selected]);
     
-  return (
-    <div className="relative min-h-[560px] overflow-hidden rounded-md border border-white/10 bg-slate-900 shadow-md">
-        <div className="absolute left-3 right-3 top-3 z-[500] flex items-center justify-between rounded-md border border-white/10 bg-slate-950/85 px-4 py-1 text-white backdrop-blur">
-            <div className="flex items-center gap-1 text-sm text-slate-300">
-                <Navigation className="h-4 w-4 text-blue-300" />
+    return (
+      
+
+
+    <div className="relative min-h-[560px] overflow-hidden rounded-md border border-slate-200 bg-white shadow-md dark:border-white/10 dark:bg-slate-900">
+        <div className="absolute left-3 right-3 top-3 z-[500] flex items-center justify-between rounded-md border border-slate-200 bg-white/80 px-4 py-1 text-slate-900 backdrop-blur dark:border-white/10 dark:bg-slate-950/85 dark:text-white">
+            <div className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-300">
+                <Navigation className="h-4 w-4 text-blue-500 dark:text-blue-300" />
                 Interactive property map
             </div>
+
             <p className="text-lg font-bold">
                 {properties.length} pins
             </p>
         </div>
+
         <MapContainer
             center={center}
             zoom={5}
