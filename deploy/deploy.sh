@@ -4,11 +4,11 @@
 
 set -e
 
-PROJECT_DIR="/home/ubuntu/interactive-store-locator-map"
+PROJECT_DIR="/home/ubuntu/interactive-property-map"
 BUILD_DIR="$PROJECT_DIR/dist"
-WEB_DIR="/var/www/storelocatormap"
-BACKUP_DIR="/var/www/storelocatormap_backup"
-APP_NAME="storelocatormap-api"
+WEB_DIR="/var/www/propertymap"
+BACKUP_DIR="/var/www/propertymap_backup"
+APP_NAME="propertymap-api"
 
 
 cd "$PROJECT_DIR"

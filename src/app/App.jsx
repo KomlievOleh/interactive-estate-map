@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { properties } from "../data/properties";
+import { properties as initialProperties } from "../data/properties";
 import { parseAiSearch } from "../utils/aiSearch";
 
 import PropertyMap from "../components/map/PropertyMap";
@@ -11,38 +11,62 @@ import ThemeToggle from "../components/ui/ThemeToggle";
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [aiQuery, setAiQuery] = useState("family house near schools");
+  const [aiQuery, setAiQuery] = useState("");
   const [type, setType] = useState("All");
   const [maxPrice, setMaxPrice] = useState(1300000);
-  const [selected, setSelected] = useState(properties[0]);
   const [modalProperty, setModalProperty] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [aiFilters, setAiFilters] = useState(parseAiSearch(aiQuery));
+    
+  const [properties, setProperties] = useState(initialProperties);
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  const types = ["All", ...new Set(properties.map((item) => item.type))];
+  const [selected, setSelected] = useState(initialProperties[0]);
+
+  const types = ["All", ...new Set((properties || []).map((item) => item.type))];
 
   const filteredProperties = useMemo(() => {
-    // return properties.filter((property) => {
-    //   const searchable = `${property.title} ${property.city} ${property.address} ${property.type} ${property.tags.join(" ")}`.toLowerCase();
+      
+    //   console.log(type);
+    //   console.log(maxPrice);
 
-    //   return (
-    //     searchable.includes(query.toLowerCase()) &&
-    //     (type === "All" || property.type === type) &&
-    //     (aiFilters.type === "All" || property.type === aiFilters.type) &&
-    //     (!aiFilters.city || property.city.toLowerCase().includes(aiFilters.city)) &&
-    //     property.price <= Math.min(maxPrice, aiFilters.maxPrice) &&
-    //     property.beds >= aiFilters.minBeds &&
-    //     (aiFilters.tags.length === 0 ||
-    //       aiFilters.tags.some((tag) => property.tags.includes(tag)))
-    //   );
-      // });
-      
-      return properties;
-      
-  }, [query, type, maxPrice, aiFilters]);
+      return (properties || []).filter((property) => {
+        const searchable = `${property.title} ${property.city} ${property.address} ${property.type} ${property.tags?.join(" ") || ""}`.toLowerCase();
+        return (
+            searchable.includes(query.toLowerCase()) && (type === "All" || property.type === type) &&
+            (aiFilters.type === "All" || property.type === aiFilters.type) &&
+            (!aiFilters.city || property.city.toLowerCase().includes(aiFilters.city)) &&
+            property.price <= Math.min(maxPrice, aiFilters.maxPrice) &&
+            property.beds >= aiFilters.minBeds &&
+            (aiFilters.tags.length === 0 ||
+                aiFilters.tags.some((tag) => property.tags?.includes(tag)))
+        );
+    });
+}, [properties, query, type, maxPrice, aiFilters]);
+    
+    
+async function generatePropertiesWithAI(prompt) {
+  const response = await fetch("http://localhost:3001/api/generate-properties", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ prompt }),
+  });
+
+  const data = await response.json();
+    
+  if (!response.ok) {
+    console.error("Server error:", data);
+    throw new Error(data.message || "Failed to generate properties");
+  }
+
+  return data.properties;
+}   
 
   function runAiSearch(value = aiQuery) {
     const nextFilters = parseAiSearch(value);
+    
     setAiQuery(value);
     setAiFilters(nextFilters);
     setType("All");
@@ -50,6 +74,36 @@ export default function App() {
     setModalProperty(null);
   }
 
+    
+async function handleGenerateProperties() {
+  try {
+    setIsGenerating(true);
+
+    const aiProperties = await generatePropertiesWithAI(aiQuery);
+
+    if (!aiProperties.length) {
+      throw new Error("AI returned empty properties list");
+    }
+
+    setProperties(aiProperties);
+    setSelected(aiProperties[0]);
+    setModalProperty(null);
+
+    const nextFilters = parseAiSearch(aiQuery);
+    setAiFilters(nextFilters);
+    setType("All");
+    setMaxPrice(1300000);
+  } catch (error) {
+    console.error("Failed to generate properties:", error);
+    alert(error.message);
+  } finally {
+    setIsGenerating(false);
+  }
+}    
+    
+    
+    
+    
   function handlePropertyClick(property) {
     setSelected(property);
 
@@ -92,6 +146,8 @@ export default function App() {
                     aiQuery={aiQuery}
                     setAiQuery={setAiQuery}
                     runAiSearch={runAiSearch}
+                    generateProperties={handleGenerateProperties}
+                    isGenerating={isGenerating}
                 />
             </div>
 
