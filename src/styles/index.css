@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.custom-location-popup .leaflet-popup-content-wrapper {
+  border-radius: 1rem;
+  padding: 0;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+}
+
+.custom-location-popup .leaflet-popup-content {
+  margin: 0;
+}
+
+.custom-location-popup .leaflet-popup-tip {
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.leaflet-top.leaflet-right {
+  top: 7vh;   /* залежить від висоти екрану */
+}
+
+/* */
+
+.iphone-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+
+.iphone-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.iphone-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.iphone-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+}
+
+.iphone-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
