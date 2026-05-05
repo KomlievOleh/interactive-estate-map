@@ -42,7 +42,7 @@ pm2 save
 echo "Testing Nginx..."
 sudo nginx -t
 
-sudo ln -s /etc/nginx/sites-available/storelocatormap /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/propertymap /etc/nginx/sites-enabled/
 
 echo "Reloading Nginx..."
 sudo systemctl reload nginx
