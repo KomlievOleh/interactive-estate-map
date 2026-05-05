@@ -4,7 +4,7 @@
 
 set -e
 
-PROJECT_DIR="/home/ubuntu/interactive-property-map"
+PROJECT_DIR="/home/ubuntu/interactive-estate-map"
 BUILD_DIR="$PROJECT_DIR/dist"
 WEB_DIR="/var/www/propertymap"
 BACKUP_DIR="/var/www/propertymap_backup"
@@ -27,7 +27,7 @@ sudo rm -rf "$BACKUP_DIR"
 sudo cp -r "$WEB_DIR" "$BACKUP_DIR" || true
 
 echo "Deploying new build..."
-sudo rm -rf "$WEB_DIR"/*
+sudo cd "$WEB_DIR"/*
 sudo cp -r "$BUILD_DIR"/* "$WEB_DIR"/
 
 echo "Setting permissions..."
