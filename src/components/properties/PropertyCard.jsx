@@ -23,7 +23,7 @@ export default function PropertyCard({
             : "border-slate-200 dark:border-white/10"
         }`}
     >
-        <div className="relative">
+      <div className="relative">
         <img
             src={property.image}
             alt={property.title}
@@ -32,19 +32,19 @@ export default function PropertyCard({
 
         <button
             onClick={(event) => {
-            event.stopPropagation();
-            toggleFavorite(property.id);
+                event.stopPropagation();
+                toggleFavorite(property.id);
             }}
             className="absolute right-4 top-4 rounded-full p-3 backdrop-blur transition hover:scale-105
             bg-white/90 text-slate-900
             dark:bg-slate-950/75 dark:text-white"
         >
             <Heart
-            className={`h-5 w-5 ${
-                favorites.includes(property.id)
-                ? "fill-red-500"
-                : "text-slate-400 dark:text-white"
-            }`}
+                className={`h-5 w-5 ${
+                    favorites.includes(property.id)
+                    ? "fill-red-500"
+                    : "text-slate-400 dark:text-white"
+                }`}
             />
         </button>
 
@@ -54,9 +54,9 @@ export default function PropertyCard({
             Featured
             </span>
         )}
-        </div>
+      </div>
 
-        <div className="p-5">
+      <div className="p-5">
         <div className="mb-3 flex items-start justify-between gap-3">
             <div>
             <h3 className="text-xl font-bold">
@@ -92,7 +92,7 @@ export default function PropertyCard({
             text={`${property.area} ft²`}
             />
         </div>
-        </div>
+      </div>
     </article>
   );
 }

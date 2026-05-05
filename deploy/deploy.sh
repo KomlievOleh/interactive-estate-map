@@ -1,5 +1,6 @@
 # chmod +x deploy.sh
 # ./deploy.sh
+
 #!/bin/bash
 
 set -e
@@ -10,24 +11,28 @@ WEB_DIR="/var/www/propertymap"
 BACKUP_DIR="/var/www/propertymap_backup"
 APP_NAME="propertymap-api"
 
-
 cd "$PROJECT_DIR"
 
 echo "Pulling latest changes..."
 git pull origin main
 
 echo "Installing dependencies..."
-npm i
+npm ci || npm i
 
 echo "Building project..."
 npm run build
 
 echo "Creating backup..."
 sudo rm -rf "$BACKUP_DIR"
-sudo cp -r "$WEB_DIR" "$BACKUP_DIR" || true
+if [ -d "$WEB_DIR" ]; then
+  sudo cp -r "$WEB_DIR" "$BACKUP_DIR"
+fi
+
+echo "Preparing web directory..."
+sudo mkdir -p "$WEB_DIR"
+sudo rm -rf "$WEB_DIR"/*
 
 echo "Deploying new build..."
-sudo cd "$WEB_DIR"/*
 sudo cp -r "$BUILD_DIR"/* "$WEB_DIR"/
 
 echo "Setting permissions..."
@@ -42,10 +47,12 @@ pm2 save
 echo "Testing Nginx..."
 sudo nginx -t
 
-sudo ln -s /etc/nginx/sites-available/propertymap /etc/nginx/sites-enabled/
+echo "Enabling Nginx site..."
+sudo ln -sf /etc/nginx/sites-available/propertymap /etc/nginx/sites-enabled/propertymap
 
 echo "Reloading Nginx..."
 sudo systemctl reload nginx
 
 echo "Deploy completed successfully."
+
 

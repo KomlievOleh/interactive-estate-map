@@ -33,9 +33,10 @@ body {
 
 /* */
 
+/* LIGHT THEME */
 .iphone-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
 }
 
 .iphone-scrollbar::-webkit-scrollbar {
@@ -47,10 +48,23 @@ body {
 }
 
 .iphone-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 999px;
 }
 
 .iphone-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* DARK THEME */
+.dark .iphone-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.dark .iphone-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dark .iphone-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
