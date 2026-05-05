@@ -12,20 +12,22 @@ server {
     root /var/www/propertymap;
     index index.html;
 
-    gzip on;
-    gzip_types text / plain text / css application / json application / javascript text / xml application / xml application / xml + rss image / svg + xml;
+    ssl_certificate / etc / letsencrypt / live / propertymap.komliev.studio / fullchain.pem;
+    ssl_certificate_key / etc / letsencrypt / live / propertymap.komliev.studio / privkey.pem;
 
-    location / api / {
-        proxy_pass http://127.0.0.1:3001/api/;
-            proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X- Real - IP $remote_addr;
-        proxy_set_header X - Forwarded - For $proxy_add_x_forwarded_for;
-        proxy_set_header X - Forwarded - Proto $scheme;
+    gzip on;
+
+    location / {
+        try_files $uri $uri/ /index.html;
 }
 
-location / {
-    try_files $uri / index.html;
+location / api / {
+    proxy_pass http://127.0.0.1:3001/;
+        proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X- Real - IP $remote_addr;
+        proxy_set_header X - Forwarded - For $proxy_add_x_forwarded_for;
+        proxy_set_header X - Forwarded - Proto $scheme;
     }
 
 location / assets / {
@@ -40,7 +42,4 @@ location / assets / {
 
 access_log /var/log/nginx / propertymap.access.log;
 error_log /var/log/nginx / propertymap.error.log;
-
-ssl_certificate / etc / letsencrypt / live / propertymap.komliev.studio / fullchain.pem;
-ssl_certificate_key / etc / letsencrypt / live / propertymap.komliev.studio / privkey.pem;
 }

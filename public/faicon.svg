@@ -1,0 +1,87 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="130" y1="100" x2="900" y2="930" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#071B35"/>
+      <stop offset="0.55" stop-color="#061326"/>
+      <stop offset="1" stop-color="#030914"/>
+    </linearGradient>
+
+    <linearGradient id="pin" x1="250" y1="210" x2="805" y2="880" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#29F2DA"/>
+      <stop offset="0.45" stop-color="#1687FF"/>
+      <stop offset="1" stop-color="#28E59A"/>
+    </linearGradient>
+
+    <linearGradient id="building" x1="360" y1="240" x2="650" y2="610" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9DF7FF"/>
+      <stop offset="0.5" stop-color="#1687FF"/>
+      <stop offset="1" stop-color="#073A8B"/>
+    </linearGradient>
+
+    <linearGradient id="roof" x1="300" y1="440" x2="780" y2="650" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D9E7FF"/>
+    </linearGradient>
+
+    <linearGradient id="land" x1="310" y1="695" x2="760" y2="895" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A4F7C8"/>
+      <stop offset="1" stop-color="#00A989"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.05 0 0 0 0 0.85 0 0 0 0 1 0 0 0 0.55 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+  </defs>
+
+  <rect x="64" y="64" width="896" height="896" rx="155" fill="url(#bg)"/>
+  <rect x="64" y="64" width="896" height="896" rx="155" stroke="#17365D" stroke-width="3" opacity="0.7"/>
+
+  <g filter="url(#softShadow)">
+    <!-- location pin arc -->
+    <path
+      d="M512 155C354 155 226 283 226 441C226 602 387 738 488 840C501 853 523 853 536 840C637 738 798 602 798 441C798 283 670 155 512 155Z"
+      fill="none"
+      stroke="url(#pin)"
+      stroke-width="58"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-dasharray="760 210"
+      filter="url(#glow)"
+    />
+
+    <!-- city buildings -->
+    <path d="M382 410L456 366L512 406V574H382V410Z" fill="url(#building)"/>
+    <path d="M512 300L596 352V574H512V300Z" fill="#176DE6"/>
+    <path d="M512 300L448 340V574H512V300Z" fill="#91F2FF"/>
+    <path d="M612 425L678 386L738 424V574H612V425Z" fill="url(#building)"/>
+    <path d="M346 456L402 424L454 456V574H346V456Z" fill="url(#building)"/>
+
+    <!-- house body -->
+    <path d="M330 602L512 432L694 602V722H330V602Z" fill="#061326"/>
+    <path d="M297 610L496 424C505 416 519 416 528 424L727 610C740 622 731 644 713 644H665L512 501L359 644H311C293 644 284 622 297 610Z" fill="url(#roof)"/>
+    <path d="M694 506H744C752 506 758 512 758 520V628H694V506Z" fill="#F4F8FF"/>
+
+    <!-- windows -->
+    <rect x="466" y="625" width="39" height="39" rx="5" fill="#FFD45A"/>
+    <rect x="522" y="625" width="39" height="39" rx="5" fill="#FFD45A"/>
+    <rect x="466" y="682" width="39" height="39" rx="5" fill="#FFD45A"/>
+    <rect x="522" y="682" width="39" height="39" rx="5" fill="#FFD45A"/>
+
+    <!-- map / land bottom -->
+    <path d="M320 765C400 774 476 814 540 878C548 886 561 886 569 878L712 735C622 745 545 779 487 842C440 802 382 774 320 765Z" fill="url(#land)"/>
+    <path d="M354 800L482 858" stroke="#061326" stroke-width="22" stroke-linecap="round"/>
+    <path d="M595 794L715 738" stroke="#061326" stroke-width="22" stroke-linecap="round"/>
+    <path d="M525 878L618 789" stroke="#061326" stroke-width="22" stroke-linecap="round"/>
+
+    <!-- sparkles -->
+    <path d="M785 322C797 372 805 380 855 392C805 404 797 412 785 462C773 412 765 404 715 392C765 380 773 372 785 322Z" fill="#35F3E1"/>
+    <path d="M721 424C729 458 735 464 769 472C735 480 729 486 721 520C713 486 707 480 673 472C707 464 713 458 721 424Z" fill="#FFFFFF"/>
+    <circle cx="650" cy="340" r="13" fill="#FFFFFF"/>
+  </g>
+</svg>
