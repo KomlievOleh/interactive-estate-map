@@ -75,32 +75,34 @@ async function generatePropertiesWithAI(prompt) {
   }
 
     
-async function handleGenerateProperties() {
-  try {
-    setIsGenerating(true);
-
-    const aiProperties = await generatePropertiesWithAI(aiQuery);
-
-    if (!aiProperties.length) {
-      throw new Error("AI returned empty properties list");
+  async function handleGenerateProperties(prompt) {
+    if (!prompt?.trim()) {
+        console.error("Prompt is required");
+        return;
     }
 
-    setProperties(aiProperties);
-    setSelected(aiProperties[0]);
-    setModalProperty(null);
+    try {
+        setIsGenerating(true);
 
-    const nextFilters = parseAiSearch(aiQuery);
-    setAiFilters(nextFilters);
-    setType("All");
-    setMaxPrice(1300000);
-  } catch (error) {
-    console.error("Failed to generate properties:", error);
-    alert(error.message);
-  } finally {
-    setIsGenerating(false);
+        const aiProperties = await generatePropertiesWithAI(prompt);
+
+        setProperties(aiProperties);
+        setSelected(aiProperties[0]);
+        setModalProperty(null);
+
+        const nextFilters = parseAiSearch(prompt);
+        setAiQuery(prompt);
+        setAiFilters(nextFilters);
+        setType("All");
+        setMaxPrice(1300000);
+    } catch (error) {
+        console.error("Failed to generate properties:", error);
+    } finally {
+        setIsGenerating(false);
+    }
   }
-}    
-    
+
+   
   function handlePropertyClick(property) {
     setSelected(property);
 
@@ -120,8 +122,8 @@ async function handleGenerateProperties() {
   return (
     //   <main className="transition-colors min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
         <main className="min-h-screen bg-gray-100 text-slate-950 transition-colors dark:bg-slate-950 dark:text-white">
-          {/* <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-8"> */}
-          <section className="mx-auto grid max-w-7xl gap-6 px-6 py-8 lg:grid-cols-[280px_1fr] lg:px-8">
+          <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+          {/* <section className="mx-auto grid max-w-7xl gap-6 px-6 py-8 lg:grid-cols-[280px_1fr] lg:px-8"> */}
             <div className="absolute left-54 top-2">
                 <ThemeToggle />
             </div>    
@@ -131,7 +133,7 @@ async function handleGenerateProperties() {
                     <span>AI-powered real estate map</span>
                 </div>
 
-                <h1 className="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
+                <h1 className="max-w-3xl text-4xl font-light  tracking-tight md:text-6xl">
                     Search properties like you talk to an agent.
                 </h1>
 

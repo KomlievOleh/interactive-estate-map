@@ -45,13 +45,12 @@ export default function AiSearchBar({
 
 
                 <button
-                    onClick={generateProperties}
-                    disabled={isGenerating}
+                    onClick={() => generateProperties(aiQuery)}
+                    disabled={isGenerating || !aiQuery.trim()}
                     className="h-14 rounded-md bg-orange-600 px-6 font-semibold text-white transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                     {isGenerating ? "Generating..." : "AI listings"}
                 </button>
-
 
 
             </div>
