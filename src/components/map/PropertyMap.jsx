@@ -4,6 +4,18 @@ import { Navigation, BedDouble, Bath, Ruler } from "lucide-react";
 import L from "leaflet";
 import { formatPrice } from "../../utils/formatPrice";
 
+function FixMapSize() {
+  const map = useMap();
+
+  useEffect(() => {
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 150);
+  }, [map]);
+
+  return null;
+}
+
 function createPriceIcon(property, isActive) {
   return L.divIcon({
     className: "",
@@ -141,25 +153,26 @@ export default function PropertyMap({ properties, selected, onSelect }) {
     
     return (
     <div className="relative min-h-[560px] overflow-hidden rounded-md border border-slate-200 bg-white shadow-md dark:border-white/10 dark:bg-slate-900">
-        <div className="absolute left-3 right-3 top-3 z-[500] flex items-center justify-between rounded-md border border-slate-200 bg-white/80 px-4 py-1 text-slate-900 backdrop-blur dark:border-white/10 dark:bg-slate-950/85 dark:text-white">
-            <div className="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-300">
+        <div className="absolute left-3 top-3 z-[500] flex items-center gap-4 rounded-md border border-slate-200 bg-white/80 px-4 py-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/85">
+            <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
                 <Navigation className="h-4 w-4 text-orange-500 dark:text-orange-300" />
-                Interactive property map
+                <span>Interactive property map</span>
             </div>
-
-            <p className="text-lg font-bold">
+            <div className="h-5 w-px bg-slate-200 dark:bg-white/10" />
+            <p className="text-sm font-semibold text-slate-900 dark:text-white">
                 {properties.length} pins
             </p>
         </div>
-
         <MapContainer
             center={center}
             zoom={5}
             scrollWheelZoom
             zoomControl={false} 
-            className="h-full w-full"              
+            className="h-[80vh] w-full"
+            // style={{ height: "560px", width: "100%" }}    
         >
-            <ZoomControl position="topright" />
+            {/* <ZoomControl position="topright" /> */}
+            <FixMapSize />
             <TileLayer
                 attribution='&copy; OpenStreetMap'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -174,6 +187,25 @@ export default function PropertyMap({ properties, selected, onSelect }) {
                 />
             ))}
         </MapContainer>
+            
+        {/* <MapContainer
+            center={center}
+            zoom={5}
+            scrollWheelZoom
+            zoomControl={false}
+            style={{ height: "560px", width: "100%" }}
+            >
+            <FixMapSize />
+
+            <TileLayer
+                attribution='&copy; OpenStreetMap'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+
+        </MapContainer> */}
+
+
+
     </div>
   );
 }

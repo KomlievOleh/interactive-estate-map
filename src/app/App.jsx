@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import "leaflet/dist/leaflet.css";
 import { properties as initialProperties } from "../data/properties";
 import { parseAiSearch } from "../utils/aiSearch";
 
@@ -120,27 +121,29 @@ async function generatePropertiesWithAI(prompt) {
   }
 
   return (
-    //   <main className="transition-colors min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-white">
         <main className="min-h-screen bg-gray-100 text-slate-950 transition-colors dark:bg-slate-950 dark:text-white">
-          <section className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
-          {/* <section className="mx-auto grid max-w-7xl gap-6 px-6 py-8 lg:grid-cols-[280px_1fr] lg:px-8"> */}
-            <div className="absolute left-54 top-2">
-                <ThemeToggle />
-            </div>    
+          <section className="mx-auto max-w-7xl space-y-4 px-6 py-3 lg:px-8">
             <div className="flex flex-col justify-center">
-                <div className="mb-5 inline-flex w-fit items-center gap-3 rounded-md border border-orange-200 bg-slate-100 px-4 py-2 text-sm text-slate-700 backdrop-blur
+              <div className="mb-5 flex items-center justify-between">
+                <div className="inline-flex items-center gap-3 rounded-md border border-orange-200 bg-slate-100 px-4 py-2 text-sm text-slate-700 backdrop-blur
                                 dark:border-white/15 dark:bg-white/10 dark:text-slate-200">
                     <span>AI-powered real estate map</span>
                 </div>
 
+                <div className="inline-flex items-center gap-3 rounded-md border border-orange-200 bg-slate-100 px-4 py-2 backdrop-blur
+                                dark:border-white/15 dark:bg-white/10">
+                    <ThemeToggle />
+                </div>
+              </div>                
+
                 <h1 className="max-w-3xl text-4xl font-light  tracking-tight md:text-6xl">
-                    Search properties like you talk to an agent.
+                    Search properties like you talk to an agent
                 </h1>
 
-                <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 md:text-lg
+                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 md:text-lg
                                 dark:text-slate-300">
                     Type requests like “cheap studio in New York” or “luxury villa with pool near beach”
-                    and the app filters listings on a map-first interface.
+                    and the app filters listings on a map-first interface
                 </p>
 
                 <AiSearchBar
@@ -151,66 +154,18 @@ async function generatePropertiesWithAI(prompt) {
                     isGenerating={isGenerating}
                 />
             </div>
+        </section>
 
+          {/* <section className="mx-auto max-w-7xl px-6  py-8 lg:px-8"> */}
+        <section className="mx-auto max-w-7xl space-y-6 px-6 py-2 lg:px-8">
+              
             <PropertyMap
                 properties={filteredProperties}
                 selected={selected}
                 onSelect={setSelected}
             />
-              
-            {/* <div className="absolute left-54 top-2">
-                <ThemeToggle />
-            </div>    
-            <aside className="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-white/10 dark:bg-white/10">
-                <div className="mb-8 flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-2xl bg-slate-950 dark:bg-white" />
-                    <h2 className="text-2xl font-bold">EstateAI</h2>
-                </div>
 
-                <nav className="space-y-2">
-                    <button className="w-full rounded-xl bg-slate-950 px-4 py-3 text-left font-semibold text-white dark:bg-white dark:text-slate-950">
-                        Dashboard
-                    </button>
-                    <button className="w-full rounded-xl px-4 py-3 text-left text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10">
-                        Properties
-                    </button>
-                    <button className="w-full rounded-xl px-4 py-3 text-left text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10">
-                        Analytics
-                    </button>
-                    <button className="w-full rounded-xl px-4 py-3 text-left text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10">
-                        Settings
-                    </button>
-                </nav>
-            </aside>
 
-            <div className="space-y-6">
-                <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-white/10 dark:bg-white/10">
-                    <h1 className="max-w-3xl text-4xl font-bold tracking-tight md:text-6xl">
-                        Search properties with AI.
-                    </h1>
-
-                    <p className="mt-4 max-w-2xl text-slate-500 dark:text-slate-300">
-                        Find homes, apartments and villas using natural language and interactive map search.
-                    </p>
-
-                    <AiSearchBar
-                        aiQuery={aiQuery}
-                        setAiQuery={setAiQuery}
-                        runAiSearch={runAiSearch}
-                        generateProperties={handleGenerateProperties}
-                        isGenerating={isGenerating}
-                    />
-                </div>
-
-                <PropertyMap
-                    properties={filteredProperties}
-                    selected={selected}
-                    onSelect={setSelected}
-                />
-            </div>               */}
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6  py-8 lg:px-8">
             <ManualFilters
                 query={query}
                 setQuery={setQuery}

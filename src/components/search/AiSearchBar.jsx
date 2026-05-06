@@ -20,7 +20,7 @@ export default function AiSearchBar({
     
     return (
         <div className="mt-8 rounded-md border border-slate-200 bg-white/80 p-4 backdrop-blur dark:border-white/10 dark:bg-white/10">
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-2 sm:flex-row">
                 <label className="relative flex-1">
                     <Wand2 className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500 dark:text-orange-300" />
 
