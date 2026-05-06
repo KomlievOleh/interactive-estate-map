@@ -19,7 +19,7 @@ export default function PropertyCard({
         dark:bg-white/10 dark:text-white dark:hover:bg-white/15
         ${
             isSelected
-            ? "border-blue-500 ring-2 ring-blue-500/30"
+            ? "border-orange-500 ring-2 ring-orange-500/30"
             : "border-slate-200 dark:border-white/10"
         }`}
     >

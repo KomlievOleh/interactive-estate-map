@@ -68,3 +68,35 @@ body {
 .dark .iphone-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+/* RESET */
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #f97316 var(--value), #e5e7eb var(--value));
+  outline: none;
+}
+
+/* THUMB (кільце) */
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: white;
+  border: 3px solid #f97316; /* orange */
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.custom-range::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: white;
+  border: 3px solid #f97316;
+  cursor: pointer;
+}

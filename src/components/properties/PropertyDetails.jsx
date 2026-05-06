@@ -13,7 +13,7 @@ export default function PropertyDetails({ selected }) {
 
       <div className="p-6 text-white">
         <div className="mb-4 flex items-center justify-between gap-3">
-          <span className="rounded-full bg-blue-400/20 px-3 py-1 text-sm text-blue-200">
+          <span className="rounded-full bg-orange-400/20 px-3 py-1 text-sm text-orange-200">
             {selected.type}
           </span>
 
@@ -68,7 +68,7 @@ export default function PropertyDetails({ selected }) {
           </div>
 
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <button className="rounded-2xl bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500">
+            <button className="rounded-2xl bg-orange-600 px-4 py-2 font-semibold text-white hover:bg-orange-500">
               <Phone className="mr-2 inline h-4 w-4" />
               Call
             </button>

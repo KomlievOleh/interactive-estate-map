@@ -22,7 +22,7 @@ export default function AiSearchBar({
         <div className="mt-8 rounded-md border border-slate-200 bg-white/80 p-4 backdrop-blur dark:border-white/10 dark:bg-white/10">
             <div className="flex flex-col gap-3 sm:flex-row">
                 <label className="relative flex-1">
-                    <Wand2 className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-blue-500 dark:text-blue-300" />
+                    <Wand2 className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500 dark:text-orange-300" />
 
                     <input
                         value={aiQuery}
@@ -31,14 +31,14 @@ export default function AiSearchBar({
                             if (event.key === "Enter") runAiSearch();
                         }}
                         placeholder="Try: family house near schools"
-                        className="h-14 w-full rounded-md border border-slate-200 bg-white pl-12 pr-4 text-slate-900 outline-none ring-blue-500/40 placeholder:text-slate-400 focus:ring-4 
+                        className="h-14 w-full rounded-md border border-slate-200 bg-white pl-12 pr-4 text-slate-900 outline-none ring-orange-500/40 placeholder:text-slate-400 focus:ring-4 
                                 dark:border-white/10 dark:bg-slate-900/80 dark:text-white dark:placeholder:text-slate-500"
                     />
                 </label>
 
                 {/* <button
                     onClick={() => runAiSearch()}
-                    className="h-14 rounded-md bg-blue-600 px-6 font-semibold text-white transition hover:bg-blue-500"
+                    className="h-14 rounded-md bg-orange-600 px-6 font-semibold text-white transition hover:bg-orange-500"
                     >
                     AI Search
                 </button> */}
@@ -47,9 +47,9 @@ export default function AiSearchBar({
                 <button
                     onClick={generateProperties}
                     disabled={isGenerating}
-                    className="h-14 rounded-md bg-blue-600 px-6 font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="h-14 rounded-md bg-orange-600 px-6 font-semibold text-white transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                    {isGenerating ? "Generating..." : "Generate AI listings"}
+                    {isGenerating ? "Generating..." : "AI listings"}
                 </button>
 
 
@@ -73,7 +73,7 @@ export default function AiSearchBar({
                     className={`rounded-full border px-3 py-2 text-sm transition
                         ${
                             activeExample === example
-                            ? "bg-blue-600 text-white border-blue-600 dark:bg-blue-500 dark:border-blue-500"
+                            ? "bg-orange-600 text-white border-orange-600 dark:bg-orange-500 dark:border-orange-500"
                             : "border-slate-200 bg-slate-100 text-slate-700 hover:bg-slate-200 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
                         }
                       `}

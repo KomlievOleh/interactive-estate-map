@@ -50,7 +50,7 @@ export default function PropertyModal({ property, onClose }) {
 
                 <div className="relative z-10 bg-white p-6 dark:bg-slate-950">
                     <div className="mb-4 flex items-center justify-between gap-3">
-                        <span className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700 dark:bg-blue-400/20 dark:text-blue-200">
+                        <span className="rounded-full bg-orange-100 px-3 py-1 text-sm text-orange-700 dark:bg-orange-400/20 dark:text-orange-200">
                             {property.type}
                         </span>
 
@@ -111,7 +111,7 @@ export default function PropertyModal({ property, onClose }) {
                         </div>
 
                         <div className="mt-4 grid grid-cols-2 gap-3">
-                            <button className="rounded-2xl bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-500">
+                            <button className="rounded-2xl bg-orange-600 px-4 py-3 font-semibold text-white transition hover:bg-orange-500">
                                 <Phone className="mr-2 inline h-4 w-4" />
                                 Call
                             </button>

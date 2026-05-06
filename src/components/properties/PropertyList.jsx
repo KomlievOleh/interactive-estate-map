@@ -10,7 +10,7 @@ export default function PropertyList({
 return (
   <div>
     <div className="mb-5">
-      <p className="text-sm uppercase tracking-[0.25em] text-blue-600 dark:text-blue-300">
+      <p className="text-sm uppercase tracking-[0.25em] text-orange-600 dark:text-orange-300">
         Map matched results
       </p>
 
