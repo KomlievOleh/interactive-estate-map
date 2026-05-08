@@ -168,8 +168,8 @@ export default function PropertyMap({ properties, selected, onSelect }) {
             zoom={5}
             scrollWheelZoom
             zoomControl={false} 
-            className="h-[80vh] w-full"
-            // style={{ height: "560px", width: "100%" }}    
+            // className="h-[80vh] w-full"
+            style={{ height: "560px", width: "100%" }}    
         >
             {/* <ZoomControl position="topright" /> */}
             <FixMapSize />
